@@ -1,0 +1,918 @@
+
+<model_description>
+    <sw_version>2021.4 SP1</sw_version>
+    <hw_properties>
+        <revision>3</revision>
+        <product_id>HIL402</product_id>
+        <configuration_id>1</configuration_id>
+        <device_ao_limit_enable>False</device_ao_limit_enable>
+        <device_id>0</device_id>
+        <spc_out_mem_size>256</spc_out_mem_size>
+        <fw_support_limit>132450821</fw_support_limit>
+    </hw_properties>
+    <sim_setup>
+        <sim_time_step>5e-07</sim_time_step>
+    </sim_setup>
+    <pesb>
+        <cell>
+            <name>Buck1</name>
+            <type>
+                <cell>igbt_leg</cell>
+            </type>
+            <site>0</site>
+            <switches>
+                <cell>
+                    <name>S1</name>
+                    <weights>
+                        <cell>[1]</cell>
+                    </weights>
+                </cell>
+            </switches>
+        </cell>
+    </pesb>
+    <analog_variables>
+        <cell>
+            <name>Series RLC Branch1.C1</name>
+            <address>0</address>
+            <type>voltage</type>
+            <initial_condition>0.0</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>La</name>
+            <address>1</address>
+            <type>current</type>
+            <initial_condition>0.0</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Va1</name>
+            <address>4</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Buck1.v1</name>
+            <address>129</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>False</visible>
+        </cell>
+        <cell>
+            <name>Buck1.v2</name>
+            <address>130</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>False</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1.Field.dcm_i_f</name>
+            <address>6</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>dcm_i_f</name>
+            <address>6</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1_dcm_i_f</name>
+            <address>6</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Ia1</name>
+            <address>7</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Buck1.il</name>
+            <address>128</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>False</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1.Armature.dcm_v_a</name>
+            <address>2</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>dcm_v_a</name>
+            <address>2</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1_dcm_v_a</name>
+            <address>2</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1.Field.dcm_v_f</name>
+            <address>3</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>dcm_v_f</name>
+            <address>3</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1_dcm_v_f</name>
+            <address>3</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1.Armature.dcm_i_a</name>
+            <address>5</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>dcm_i_a</name>
+            <address>5</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1_dcm_i_a</name>
+            <address>5</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Vs1</name>
+            <address>16640</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Vs2</name>
+            <address>16641</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1.sine encoder A</name>
+            <address>16396</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>machine sine encoder A</name>
+            <address>16396</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1_machine sine encoder A</name>
+            <address>16396</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1.sine encoder B</name>
+            <address>16397</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>machine sine encoder B</name>
+            <address>16397</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1_machine sine encoder B</name>
+            <address>16397</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1.e_a</name>
+            <address>16385</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>e_a</name>
+            <address>16385</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1_e_a</name>
+            <address>16385</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1.psi_f</name>
+            <address>16384</address>
+            <type>flux</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>psi_f</name>
+            <address>16384</address>
+            <type>flux</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1_psi_f</name>
+            <address>16384</address>
+            <type>flux</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1.Machine Wrapper1.electrical_variables_3</name>
+            <address>16386</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>False</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1.Machine Wrapper1.electrical_variables_4</name>
+            <address>16387</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>False</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1.Machine Wrapper1.electrical_variables_5</name>
+            <address>16388</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>False</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1.Machine Wrapper1.electrical_variables_6</name>
+            <address>16389</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>False</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1.Machine Wrapper1.electrical_variables_7</name>
+            <address>16390</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>False</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1.Machine Wrapper1.electrical_variables_8</name>
+            <address>16391</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>False</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1.electrical torque</name>
+            <address>16392</address>
+            <type>torque</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>machine electrical torque</name>
+            <address>16392</address>
+            <type>torque</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1_machine electrical torque</name>
+            <address>16392</address>
+            <type>torque</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1.mechanical torque</name>
+            <address>16393</address>
+            <type>torque</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>machine mechanical torque</name>
+            <address>16393</address>
+            <type>torque</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1_machine mechanical torque</name>
+            <address>16393</address>
+            <type>torque</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1.resolver A</name>
+            <address>16398</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>machine resolver A</name>
+            <address>16398</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1_machine resolver A</name>
+            <address>16398</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1.mechanical speed</name>
+            <address>16394</address>
+            <type>angular speed</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>machine mechanical speed</name>
+            <address>16394</address>
+            <type>angular speed</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1_machine mechanical speed</name>
+            <address>16394</address>
+            <type>angular speed</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1.resolver B</name>
+            <address>16399</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>machine resolver B</name>
+            <address>16399</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1_machine resolver B</name>
+            <address>16399</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1.mechanical angle</name>
+            <address>16395</address>
+            <type>angle</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>machine mechanical angle</name>
+            <address>16395</address>
+            <type>angle</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>DC Machine1_machine mechanical angle</name>
+            <address>16395</address>
+            <type>angle</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>const_0V</name>
+            <address>17152</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 1</name>
+            <address>17408</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 2</name>
+            <address>17409</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 3</name>
+            <address>17410</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 4</name>
+            <address>17411</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 5</name>
+            <address>17412</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 6</name>
+            <address>17413</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 7</name>
+            <address>17414</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 8</name>
+            <address>17415</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 9</name>
+            <address>17416</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 10</name>
+            <address>17417</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 11</name>
+            <address>17418</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 12</name>
+            <address>17419</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 13</name>
+            <address>17420</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 14</name>
+            <address>17421</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 15</name>
+            <address>17422</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>HIL0 analog input 16</name>
+            <address>17423</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+    </analog_variables>
+    <digital_variables>
+        <cell>
+            <name>HIL0 AO flag</name>
+            <address>8</address>
+        </cell>
+        <cell>
+            <name>HIL0 DTV flag</name>
+            <address>9</address>
+        </cell>
+        <cell>
+            <name>HIL0 Capture/Scope Trigger</name>
+            <address>16</address>
+        </cell>
+        <cell>
+            <name>DC Machine1.encoder A</name>
+            <address>256</address>
+        </cell>
+        <cell>
+            <name>machine encoder A</name>
+            <address>256</address>
+        </cell>
+        <cell>
+            <name>DC Machine1_machine encoder A</name>
+            <address>256</address>
+        </cell>
+        <cell>
+            <name>DC Machine1.encoder Z</name>
+            <address>258</address>
+        </cell>
+        <cell>
+            <name>machine encoder Z</name>
+            <address>258</address>
+        </cell>
+        <cell>
+            <name>DC Machine1_machine encoder Z</name>
+            <address>258</address>
+        </cell>
+        <cell>
+            <name>DC Machine1.encoder B</name>
+            <address>257</address>
+        </cell>
+        <cell>
+            <name>machine encoder B</name>
+            <address>257</address>
+        </cell>
+        <cell>
+            <name>DC Machine1_machine encoder B</name>
+            <address>257</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 1</name>
+            <address>512</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 2</name>
+            <address>513</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 3</name>
+            <address>514</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 4</name>
+            <address>515</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 5</name>
+            <address>516</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 6</name>
+            <address>517</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 7</name>
+            <address>518</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 8</name>
+            <address>519</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 9</name>
+            <address>520</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 10</name>
+            <address>521</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 11</name>
+            <address>522</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 12</name>
+            <address>523</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 13</name>
+            <address>524</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 14</name>
+            <address>525</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 15</name>
+            <address>526</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 16</name>
+            <address>527</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 17</name>
+            <address>528</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 18</name>
+            <address>529</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 19</name>
+            <address>530</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 20</name>
+            <address>531</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 21</name>
+            <address>532</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 22</name>
+            <address>533</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 23</name>
+            <address>534</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 24</name>
+            <address>535</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 25</name>
+            <address>536</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 26</name>
+            <address>537</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 27</name>
+            <address>538</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 28</name>
+            <address>539</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 29</name>
+            <address>540</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 30</name>
+            <address>541</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 31</name>
+            <address>542</address>
+        </cell>
+        <cell>
+            <name>HIL0 digital input 32</name>
+            <address>543</address>
+        </cell>
+        <cell>
+            <name>Buck1.S1</name>
+            <address>768</address>
+        </cell>
+        <cell>
+            <name>Buck1.PWM_Modulator_TOP_1</name>
+            <address>768</address>
+        </cell>
+        <cell>
+            <name>Buck1.PWM_Modulator_BOT_1</name>
+            <address>769</address>
+        </cell>
+    </digital_variables>
+    <sources>
+        <cell>
+            <name>Vs1</name>
+            <type>1phase</type>
+            <address>[0]</address>
+            <unit>V</unit>
+            <init_settings>['Constant', 300.0]</init_settings>
+        </cell>
+        <cell>
+            <name>Vs2</name>
+            <type>1phase</type>
+            <address>[1]</address>
+            <unit>V</unit>
+            <init_settings>['Constant', 240.0]</init_settings>
+        </cell>
+    </sources>
+    <machines>
+        <cell>
+            <name>DC Machine1</name>
+            <load_ctrl>True</load_ctrl>
+            <ext_mdl_load_type>speed</ext_mdl_load_type>
+            <site>0</site>
+            <init>
+                <friction_coef>0.002953</friction_coef>
+                <mew_ratio>1.0</mew_ratio>
+                <enc_ppr>1024</enc_ppr>
+                <res_pole_pairs>1</res_pole_pairs>
+                <constants>
+                </constants>
+                <lut_angle1_max>6.283185307179586</lut_angle1_max>
+                <lut_angle2_max>6.283185307179586</lut_angle2_max>
+                <gp_regs_reset>[[32, ''], [31, '']]</gp_regs_reset>
+                <lut2dsp_regs_reset>[]</lut2dsp_regs_reset>
+            </init>
+            <mch_speed>machine mechanical speed</mch_speed>
+            <mch_torque>machine electrical torque</mch_torque>
+        </cell>
+    </machines>
+    <pv_panels>
+    </pv_panels>
+    <batteries>
+    </batteries>
+    <contactors>
+    </contactors>
+    <analog_output_settings>
+    </analog_output_settings>
+    <digital_output_settings>
+    </digital_output_settings>
+    <dtv>
+        <spc_dtv>
+            <cell>
+                <address>0</address>
+                <fqn>Buck1</fqn>
+            </cell>
+        </spc_dtv>
+        <par_dtv>
+        </par_dtv>
+    </dtv>
+
+<!-- ******* SP DATA ******** -->
+
+    <model_properties>
+        <execution_rates>[[[0.0004]]]</execution_rates>
+        <sys_real_type_precision>float</sys_real_type_precision>
+        <user_real_type_precision>double</user_real_type_precision>
+    </model_properties>
+
+    <analog_variables>
+        <cell>
+            <name>Speed1</name>
+            <type>generic</type>
+            <address>8193</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Torque</name>
+            <type>generic</type>
+            <address>8194</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Speed</name>
+            <type>generic</type>
+            <address>8192</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+    </analog_variables>
+
+    <digital_variables>
+        <cell>
+            <name>enable</name>
+            <address>2048</address>
+        </cell>
+    </digital_variables>
+<digital_variables>
+    </digital_variables>
+
+    <tunable_params>
+        <tunable_param>
+            <name>Enable</name>
+            <addr>[1426063616]</addr>
+            <min>0.0</min>
+            <max>1.0</max>
+            <def_value>0.0</def_value>
+            <unit></unit>
+            <widget_type>float</widget_type>
+            <format>real</format>
+            <size>1</size>
+            <param_type>scada input</param_type>
+            <cpu_type>user_sp_cpu</cpu_type>
+            <cpu_idx>0</cpu_idx>
+            <execution_rate>0.0004</execution_rate>
+        </tunable_param>
+        <tunable_param>
+            <name>Speed RPM</name>
+            <addr>[1426063620]</addr>
+            <min>200.0</min>
+            <max>1700.0</max>
+            <def_value>0.0</def_value>
+            <unit></unit>
+            <widget_type>float</widget_type>
+            <format>real</format>
+            <size>1</size>
+            <param_type>scada input</param_type>
+            <cpu_type>user_sp_cpu</cpu_type>
+            <cpu_idx>0</cpu_idx>
+            <execution_rate>0.0004</execution_rate>
+        </tunable_param>
+    </tunable_params>
+
+
+    <dsp_monitors>
+        <monitor>
+            <type>user</type>
+            <cpu_idx>0</cpu_idx>
+            <execution_rates>[0.0004]</execution_rates>
+            <execution_rate_labels>['ER0 (0.0004)']</execution_rate_labels>
+            <timer_counters>[63999]</timer_counters>
+
+            
+        </monitor>
+    </dsp_monitors>
+
+    <sp_compiler_type>gcc</sp_compiler_type>
+
+    <streaming>
+
+        <streaming_analog_signals>
+            <analog_signal>
+                <signal_name>Speed</signal_name>
+                <ex_rate>0.0004</ex_rate>
+                <data_index>2</data_index>
+                <cpu>['user_sp_cpu', 0]</cpu>
+            </analog_signal>
+            <analog_signal>
+                <signal_name>Torque</signal_name>
+                <ex_rate>0.0004</ex_rate>
+                <data_index>1</data_index>
+                <cpu>['user_sp_cpu', 0]</cpu>
+            </analog_signal>
+            <analog_signal>
+                <signal_name>Speed1</signal_name>
+                <ex_rate>0.0004</ex_rate>
+                <data_index>0</data_index>
+                <cpu>['user_sp_cpu', 0]</cpu>
+            </analog_signal>
+        </streaming_analog_signals>
+
+
+     </streaming>
+
+
+</model_description>
