@@ -1,0 +1,1046 @@
+version = 4.2
+
+//
+// Saved by sw version: 2021.4 SP1
+// Save timestamp: 16-Dec-2021 @ 06:07:43 PM
+//
+
+model "Motor closed loop control" {
+    configuration {
+        hil_device = "HIL402"
+        hil_configuration_id = 1
+        simulation_method = exact
+        simulation_time_step = auto
+        simulation_discret_scaling = 1.0
+        dsp_timer_periods = 100e-6, 50e-3
+        ss_calc_method = "systematic elimination"
+        enb_pole_shift = True
+        enb_gds_oversampling = True
+        show_modes = False
+        device_ao_limit_enable = False
+        reset_analog_outputs_on_sim_stop = True
+        reset_digital_outputs_on_sim_stop = True
+        cpl_stb = False
+        enb_dep_sw_detect = False
+        code_section = "internal memory"
+        data_section = "internal memory"
+        sys_sp_rate_1 = 0.0001
+        sys_sp_rate_2 = 0.05
+        sys_real_type_precision = "default"
+        user_real_type_precision = "default"
+        sys_cpu_optimization = "high"
+        user_cpu_optimization = "high"
+        user_cpu_part_option = "default"
+        matrix_based_reduction = True
+        cpl_dynamics_analysis = False
+        export_ss_to_pickle = False
+        ground_scope_core = False
+        cce_platform = "generic"
+        cce_use_relative_names = False
+        cce_type_mapping_real = "double"
+        cce_type_mapping_uint = "unsigned int"
+        cce_type_mapping_int = "int"
+        cce_directory = ""
+        cce_custom_type_int = ""
+        cce_custom_type_uint = ""
+        cce_custom_type_real = ""
+        tunable_params = "component defined"
+        sp_compiler_type = "C compiler"
+        sig_stim = "off"
+    }
+
+    component Subsystem "My model" {
+        component gen_gain "To rpm" {
+            gain = "60/(2*np.pi)"
+        }
+        [
+            position = 2664, 1816
+        ]
+
+        component gen_probe Speed {
+            addr = "8964"
+            streaming_en = "True"
+        }
+        [
+            position = 2776, 1816
+        ]
+
+        component src_scada_input IM_Load {
+            addr = "1427111936"
+            execution_rate = "Ts"
+            max = "1"
+            min = "0"
+            unit = "p.u."
+        }
+        [
+            position = 2200, 1712
+        ]
+
+        component gen_product Product2 {
+        }
+        [
+            position = 2400, 2536
+        ]
+
+        component gen_probe int_out {
+            addr = "8962"
+        }
+        [
+            position = 1920, 2472
+        ]
+
+        component gen_probe sin_out1 {
+            addr = "8965"
+        }
+        [
+            position = 2256, 2560
+        ]
+
+        component pas_inductor Lc {
+            inductance = "Lgrid"
+        }
+        [
+            position = 1120, 2128
+        ]
+
+        component pas_inductor Lb {
+            inductance = "Lgrid"
+        }
+        [
+            position = 1120, 2032
+        ]
+
+        component pas_capacitor Cdc {
+            capacitance = "0.00042"
+        }
+        [
+            position = 1568, 2032
+            rotation = right
+        ]
+
+        component pas_inductor La {
+            inductance = "Lgrid"
+        }
+        [
+            position = 1120, 1936
+        ]
+
+        component src_ground gnd {
+        }
+        [
+            position = 1152, 2208
+        ]
+
+        component pas_resistor Ra {
+            resistance = "Rgrid"
+        }
+        [
+            position = 1264, 1944
+        ]
+
+        component pas_resistor Rb {
+            resistance = "Rgrid"
+        }
+        [
+            position = 1248, 2032
+        ]
+
+        component pas_resistor Rc {
+            resistance = "Rgrid"
+        }
+        [
+            position = 1240, 2120
+        ]
+
+        component gen_bus_join "Bus Join1" {
+            inputs = "1"
+        }
+        [
+            position = 2552, 2616
+        ]
+
+        component src_scada_input "Speed RPM" {
+            addr = "1427111944"
+            execution_rate = "Ts"
+            max = "1700"
+            min = "200"
+            unit = ""
+        }
+        [
+            position = 1072, 2528
+        ]
+
+        component gen_sum Sum3 {
+            execution_rate = "Ts"
+            signs = "+-"
+        }
+        [
+            position = 1296, 2536
+        ]
+
+        component gen_probe Torque {
+            addr = "8964"
+            streaming_en = "True"
+        }
+        [
+            position = 2688, 2040
+        ]
+
+        component src_scada_input Enable {
+            addr = "1427111948"
+            execution_rate = "Ts"
+            max = "1"
+            min = "0"
+            unit = ""
+        }
+        [
+            position = 1552, 1848
+        ]
+
+        component gen_digital_probe enable {
+        }
+        [
+            position = 1664, 1784
+        ]
+
+        component gen_product Product6 {
+        }
+        [
+            position = 1424, 2528
+        ]
+
+        component gen_gain Gain6 {
+            gain = "4"
+        }
+        [
+            position = 2384, 1760
+        ]
+
+        component gen_limiter Limit1 {
+            lower_limit = "0"
+            upper_limit = "1"
+        }
+        [
+            position = 1688, 2392
+        ]
+
+        component gen_gain "VF ratio" {
+            gain = "1/(50*2*np.pi)"
+        }
+        [
+            position = 1640, 2464
+            rotation = left
+        ]
+
+        component gen_gain w_meh_to_w_elec {
+            execution_rate = "Ts"
+            gain = "pms"
+        }
+        [
+            position = 1184, 2608
+        ]
+
+        component gen_gain rpm_to_w_elec {
+            execution_rate = "Ts"
+            gain = "2*np.pi*pms/60"
+        }
+        [
+            position = 1184, 2528
+        ]
+
+        component gen_probe voltage_pu {
+        }
+        [
+            position = 1848, 2320
+        ]
+
+        component gen_pid_controller "PI controller" {
+            controller_type = "PI"
+            enb_anti_windup_out = "True"
+            enb_output_limit_out = "True"
+            ki = "4.9"
+            kp = "0.9"
+            lower_sat_lim = "-550"
+            upper_sat_lim = "550"
+        }
+        [
+            position = 1536, 2528
+        ]
+
+        component "core/Voltage Measurement" Vab {
+        }
+        [
+            position = 2112, 1984
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Current Measurement" Ia {
+        }
+        [
+            position = 2176, 1936
+            size = 64, 32
+        ]
+
+        component "core/Current Measurement" Ib {
+        }
+        [
+            position = 2176, 2032
+            size = 64, 32
+        ]
+
+        component "core/Three Phase Voltage Source" Vgrid {
+        }
+        [
+            position = 992, 2032
+            size = 62, 256
+        ]
+
+        component "core/Single Phase Core Coupling" "coupling 1" {
+            R2 = "0.01"
+            snb_type_u = "R2"
+        }
+        [
+            position = 1744, 2032
+            size = 12, 256
+        ]
+
+        component "core/Three Phase Diode Rectifier" "3ph_rectifier 1" {
+        }
+        [
+            position = 1448, 2032
+            size = 127, 256
+        ]
+
+        component "core/Current Measurement" Iinv_in {
+        }
+        [
+            position = 1848, 1936
+            size = 64, 32
+        ]
+
+        component src_triangular "Triangular load" {
+            execution_rate = "Ts"
+            frequency = "0.5"
+            max_val = "1"
+            min_val = "0"
+        }
+        [
+            position = 2128, 1760
+        ]
+
+        component src_square "Square load" {
+            frequency = "0.5"
+        }
+        [
+            position = 2128, 1856
+        ]
+
+        component sys_mp_signal_switch Mux {
+            number_of_input_terminals = "4"
+        }
+        [
+            position = 2312, 1760
+        ]
+
+        component src_triangular "Saw load" {
+            duty_cycle = "1"
+            execution_rate = "Ts"
+            frequency = "0.5"
+            max_val = "1"
+            min_val = "0"
+        }
+        [
+            position = 2200, 1816
+        ]
+
+        component src_scada_input Load_sel {
+            addr = "1427111936"
+            execution_rate = "Ts"
+            format = "int"
+            max = "4"
+            min = "0"
+            signal_type = "int"
+            unit = ""
+        }
+        [
+            position = 2128, 1672
+        ]
+
+        component Subsystem "machine 3_sp_outputs" {
+            layout = dynamic
+            component gen_bus_split "machine 3sp_outputs" {
+                execution_rate = "Ts"
+            }
+            [
+                position = 304, 152
+            ]
+
+            port in {
+                position = auto:auto
+                kind = sp
+                direction =  out
+                sp_type {
+                    default = auto
+                    readonly = True
+                }
+            }
+            [
+                position = 200, 152
+            ]
+
+            port T {
+                position = auto:auto
+                kind = sp
+                direction =  in
+                sp_type {
+                    default = inherit
+                    readonly = True
+                }
+            }
+            [
+                position = 496, 104
+            ]
+
+            port w {
+                position = auto:auto
+                kind = sp
+                direction =  in
+                sp_type {
+                    default = inherit
+                    readonly = True
+                }
+            }
+            [
+                position = 496, 160
+            ]
+
+            connect in "machine 3sp_outputs.in" as Connection1
+            connect T "machine 3sp_outputs.out" as Connection2
+            connect w "machine 3sp_outputs.out1" as Connection3
+        }
+        [
+            position = 2552, 2032
+            size = 48, 48
+        ]
+
+        component "core/Separate or Parallel Excitation DC Machine" "DC Machine1" {
+            el_trq_out = "True"
+            execution_rate = "Ts"
+            friction_coeff = "0.002953"
+            load_src = "Model"
+            mech_speed_out = "True"
+            res_int_carr_f = "4000.0"
+        }
+        [
+            position = 2328, 2024
+            rotation = right
+            scale = 1, -1
+            size = 176, 160
+        ]
+
+        component "core/Buck" Buck1 {
+            carrier_freq = "4000.0"
+            ctrl_src = "Internal modulator"
+            execution_rate = "0.00004"
+            fvd_def_method = "LUT"
+            load_mode = "on max"
+            pwm_enable_di = "22"
+            pwm_enabling = "True"
+        }
+        [
+            position = 1904, 2144
+            size = 127, 256
+        ]
+
+        component src_voltage Vs1 {
+            init_const_value = "300"
+        }
+        [
+            position = 2320, 2176
+            rotation = down
+        ]
+
+        component pas_resistor Ra1 {
+            resistance = "0.002"
+        }
+        [
+            position = 1984, 1952
+        ]
+
+        component pas_inductor La1 {
+            inductance = "10e-3"
+        }
+        [
+            position = 2056, 1952
+        ]
+
+        tag Goto1 {
+            value = "reference"
+            scope = global
+            kind = sp
+            direction = in
+        }
+        [
+            position = 2648, 2616
+            size = 60, 20
+        ]
+
+        tag From2 {
+            value = "reference"
+            scope = global
+            kind = sp
+            direction = out
+        }
+        [
+            position = 1832, 1768
+            size = 60, 20
+        ]
+
+        tag Goto3 {
+            value = "w_speed"
+            scope = global
+            kind = sp
+            direction = in
+        }
+        [
+            position = 2688, 1944
+            size = 60, 20
+        ]
+
+        tag From3 {
+            value = "w_speed"
+            scope = global
+            kind = sp
+            direction = out
+        }
+        [
+            position = 1056, 2608
+            size = 60, 20
+        ]
+
+        tag Goto4 {
+            value = "enable"
+            scope = global
+            kind = sp
+            direction = in
+        }
+        [
+            position = 1744, 1872
+            size = 60, 20
+        ]
+
+        tag From4 {
+            value = "enable"
+            scope = global
+            kind = sp
+            direction = out
+        }
+        [
+            position = 1288, 2448
+            size = 60, 20
+        ]
+
+        junction Junction2 pe
+        [
+            position = 2112, 2032
+        ]
+
+        junction Junction57 pe
+        [
+            position = 1704, 2128
+        ]
+
+        junction Junction87 sp
+        [
+            position = 2600, 1944
+        ]
+
+        junction Junction96 sp
+        [
+            position = 1768, 2392
+        ]
+
+        junction Junction101 pe
+        [
+            position = 1560, 1936
+        ]
+
+        junction Junction102 sp
+        [
+            position = 1672, 1848
+        ]
+
+        junction Junction103 sp
+        [
+            position = 1640, 1848
+        ]
+
+        junction Junction104 sp
+        [
+            position = 2224, 2528
+        ]
+
+        junction Junction105 sp
+        [
+            position = 1648, 2528
+        ]
+
+        junction Junction106 sp
+        [
+            position = 1856, 2528
+        ]
+
+        junction Junction107 pe
+        [
+            position = 2136, 1936
+        ]
+
+        connect "3ph_rectifier 1.neg_out" Junction57 as Connection4
+        connect "3ph_rectifier 1.b_in" Rb.n_node as Connection5
+        connect "Bus Join1.out" Goto1 as Connection6
+        connect "Bus Join1.in" Product2.out as Connection7
+        connect Cdc.n_node Junction57 as Connection14
+        connect From3 w_meh_to_w_elec.in as Connection195
+        connect From4 Product6.in as Connection308
+        connect Ib.p_node Junction2 as Connection26
+        [
+            breakpoints = 2144, 2032; 2144, 2032
+        ]
+        connect Iinv_in.p_node "coupling 1.a_out" as Connection29
+        connect Junction57 "coupling 1.b_in" as Connection37
+        connect Junction87 Goto3 as Connection259
+        connect Junction96 voltage_pu.in as Connection331
+        [
+            breakpoints = 1768, 2392; 1768, 2392
+        ]
+        connect La.n_node Ra.p_node as Connection44
+        connect Lc.n_node Rc.p_node as Connection45
+        connect Limit1.out Junction96 as Connection330
+        connect Limit1.in "VF ratio.out" as Connection327
+        connect Product6.out "PI controller.in" as Connection304
+        connect Ra.n_node "3ph_rectifier 1.a_in" as Connection53
+        connect Rb.p_node Lb.n_node as Connection54
+        connect Rc.n_node "3ph_rectifier 1.c_in" as Connection55
+        connect "Speed RPM.out" rpm_to_w_elec.in as Connection188
+        connect Sum3.out Product6.in1 as Connection303
+        connect "To rpm.in" Junction87 as Connection260
+        connect "To rpm.out" Speed.in as Connection59
+        connect Torque.in "machine 3_sp_outputs.T" as Connection295
+        connect Vab.n_node Junction2 as Connection63
+        [
+            breakpoints = 2112, 2032; 2112, 2032
+        ]
+        connect Vgrid.a_node La.p_node as Connection65
+        connect Vgrid.b_node Lb.p_node as Connection66
+        connect Vgrid.c_node Lc.p_node as Connection67
+        connect gnd.node Vgrid.n_node as Connection71
+        connect rpm_to_w_elec.out Sum3.in as Connection189
+        connect w_meh_to_w_elec.out Sum3.in1 as Connection298
+        connect "machine 3_sp_outputs.w" Junction87 as Connection343
+        connect IM_Load.out Mux.in as Connection345
+        [
+            breakpoints = 2256, 1712; 2256, 1744
+        ]
+        connect "Triangular load.out" Mux.in1 as Connection346
+        connect "Saw load.out" Mux.in2 as Connection347
+        [
+            breakpoints = 2256, 1792; 2256, 1776
+        ]
+        connect "Square load.out" Mux.in3 as Connection348
+        connect Load_sel.out Mux.ctrl as Connection349
+        connect Gain6.in Mux.out as Connection350
+        connect Gain6.out "DC Machine1.load_in" as Connection351
+        connect "DC Machine1.out" "machine 3_sp_outputs.in" as Connection352
+        connect "coupling 1.b_out" Buck1.b_in as Connection360
+        connect Junction2 Buck1.b_out as Connection364
+        [
+            breakpoints = 2112, 2032; 2112, 2048; 2112, 2048; 2112, 2032
+        ]
+        connect Ia.n_node "DC Machine1.a1_in" as Connection365
+        [
+            breakpoints = 2224, 1904; 2232, 1904
+        ]
+        connect Ib.n_node "DC Machine1.a2_in" as Connection366
+        connect Vs1.p_node "DC Machine1.f1_in" as Connection367
+        connect Vs1.n_node "DC Machine1.f2_in" as Connection368
+        connect "coupling 1.a_in" Junction101 as Connection374
+        [
+            breakpoints = 1704, 1936; 1704, 1936
+        ]
+        connect Junction101 "3ph_rectifier 1.pos_out" as Connection375
+        connect Cdc.p_node Junction101 as Connection376
+        connect From2 Buck1.In as Connection377
+        connect Junction102 Buck1.En as Connection380
+        connect Goto4 Junction102 as Connection381
+        connect Enable.out Junction103 as Connection382
+        connect Junction103 Junction102 as Connection383
+        connect enable.in Junction103 as Connection384
+        connect Product2.in Junction104 as Connection391
+        [
+            breakpoints = 2328, 2528
+        ]
+        connect Junction104 sin_out1.in as Connection392
+        [
+            breakpoints = 2216, 2528; 2216, 2528
+        ]
+        connect "PI controller.out" Junction105 as Connection394
+        connect "VF ratio.in" Junction105 as Connection396
+        connect Junction96 Product2.in1 as Connection398
+        [
+            breakpoints = 1768, 2392; 2304, 2544; 2304, 2544; 2304, 2544
+        ]
+        connect Junction105 Junction106 as Connection399
+        connect Junction106 Junction104 as Connection400
+        connect int_out.in Junction106 as Connection401
+        connect Ra1.p_node Buck1.a_out as Connection403
+        connect Ra1.n_node La1.p_node as Connection404
+        connect Ia.p_node Junction107 as Connection405
+        connect Junction107 Vab.p_node as Connection406
+        [
+            breakpoints = 2112, 1936; 2144, 1936; 2144, 1936; 2112, 1936; 2112, 1936; 2112, 1952; 2112, 1952
+        ]
+        connect La1.n_node Junction107 as Connection407
+        connect Iinv_in.n_node Buck1.a_in as Connection408
+    }
+
+    default {
+        gen_bus_join {
+            inputs = "2"
+            execution_rate = "inherit"
+        }
+
+        gen_bus_split {
+            outputs = "2"
+            execution_rate = "inherit"
+        }
+
+        gen_digital_probe {
+            override_signal_name = "False"
+            signal_name = ""
+            streaming_en = "False"
+            addr = "0"
+            streaming_er_idx = "0"
+            execution_rate = "inherit"
+        }
+
+        gen_gain {
+            gain = "1"
+            multiplication = "Element-wise(K.*u)"
+            _tunable = "False"
+            execution_rate = "inherit"
+        }
+
+        gen_limiter {
+            upper_limit = "[\'inf\']"
+            lower_limit = "[\'-inf\']"
+            execution_rate = "inherit"
+        }
+
+        gen_pid_controller {
+            controller_type = "PID"
+            kp = "1"
+            kp_source = "internal"
+            ki = "1"
+            ki_source = "internal"
+            kd = "0"
+            kd_source = "internal"
+            filt_coef = "100"
+            int_init_value = "0"
+            filt_init_value = "0"
+            enb_output_limit_out = "False"
+            show_reset = "none"
+            upper_sat_lim = "1"
+            upper_sat_lim_source = "internal"
+            lower_sat_lim = "-1"
+            lower_sat_lim_source = "internal"
+            enb_anti_windup_out = "False"
+            signal_out_type = "inherit"
+            _tunable = "False"
+            execution_rate = "inherit"
+        }
+
+        gen_probe {
+            addr = "0"
+            override_signal_name = "False"
+            signal_name = ""
+            signal_type = "generic"
+            streaming_en = "False"
+            streaming_er_idx = "0"
+            execution_rate = "inherit"
+        }
+
+        gen_product {
+            signs = "2"
+            execution_rate = "inherit"
+        }
+
+        gen_sum {
+            signs = "2"
+            execution_rate = "inherit"
+        }
+
+        pas_capacitor {
+            capacitance = "1e-6"
+            initial_voltage = "0"
+            pole_shift_ignore = "False"
+            visible = "True"
+        }
+
+        pas_inductor {
+            inductance = "1e-3"
+            initial_current = "0.0"
+            pole_shift_ignore = "False"
+            visible = "True"
+        }
+
+        pas_resistor {
+            resistance = "1"
+            param_set = ""
+        }
+
+        src_scada_input {
+            addr = "0"
+            format = "real"
+            override_signal_name = "False"
+            signal_name = ""
+            signal_type = "real"
+            min = "-1e6"
+            max = "1e6"
+            def_value = "0"
+            unit = " "
+            execution_rate = "100e-6"
+        }
+
+        src_square {
+            hs_output = "1"
+            ls_output = "0"
+            frequency = "50"
+            duty_cycle = "0.5"
+            phase = "0"
+            signal_type = "real"
+            execution_rate = "100e-6"
+            _tunable = "False"
+        }
+
+        src_triangular {
+            min_val = "-0.5"
+            max_val = "0.5"
+            frequency = "50"
+            duty_cycle = "0.5"
+            phase = "0"
+            execution_rate = "100e-6"
+            _tunable = "False"
+        }
+
+        src_voltage {
+            sig_input = "False"
+            type = "signal generator"
+            param_set = "1phase"
+            parent_label = ""
+            addr = "0"
+            spc_nb = "0"
+            execution_rate = "100e-6"
+            cpd_visible = "True"
+            enable_snb = "False"
+            snb_type = "R2"
+            R2 = "0.0"
+            L1 = "0.1"
+            override_signal_name = "False"
+            signal_name = ""
+            init_source_nature = "Constant"
+            init_const_value = "0.0"
+            init_rms_value = "0.0"
+            init_frequency = "50.0"
+            init_phase = "0.0"
+        }
+
+        sys_mp_signal_switch {
+            number_of_input_terminals = "2"
+            execution_rate = "inherit"
+        }
+
+        "core/Buck" {
+            ctrl_src = "Digital inputs"
+            op_mode = "Fixed carrier frequency"
+            carrier_freq = "10000.0"
+            carr_ph_offset = "0.0"
+            d_time = "5e-6"
+            ref_sig_min_max = "[-1.0, 1.0]"
+            load_mode = "on min"
+            execution_rate = "inherit"
+            S1 = "1"
+            S1_logic = "active high"
+            pwm_enabling = "False"
+            pwm_enable_di = "13"
+            pwm_enable_inv = "active high"
+            losses_estimation = "False"
+            fvd_def_method = "Voltage and Resistance"
+            Import_igbt_xml = "not selected"
+            Import_diode_xml = "not selected"
+            Vce = "1.3"
+            Rce = "0"
+            Vd = "1.2"
+            Rd = "0"
+            i_sw = "[0.0, 6.0, 12.0, 18.0, 24.0]"
+            v_sw = "[0.0, 600.0]"
+            temp_sw = "[25.0, 50.0, 75.0, 100.0, 125.0]"
+            vce_table_out = "[1.3, 1.3, 1.3, 1.3, 1.3]"
+            vd_table_out = "[1.2, 1.2, 1.2, 1.2, 1.2]"
+            et_on_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*3.8e-3, 0.4*3.8e-3, 0.8*3.8e-3, 0.68*3.8e-3, 0.9*3.8e-3], [0.65*3.8e-3, 0.9*3.8e-3, 1.2*3.8e-3, 1.5*3.8e-3, 1.7*3.8e-3], [0.9*3.8e-3, 1.3*3.8e-3, 1.7*3.8e-3, 1.9*3.8e-3, 2.25*3.8e-3], [1.1*3.8e-3, 1.7*3.8e-3, 2.1*3.8e-3, 2.3*3.8e-3, 2.5*3.8e-3]]"
+            et_off_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*2.1e-3, 0.4*2.1e-3, 0.8*2.1e-3, 0.68*2.1e-3, 0.9*2.1e-3], [0.65*2.1e-3, 0.9*2.1e-3, 1.2*2.1e-3, 1.5*2.1e-3, 1.7*2.1e-3], [0.9*2.1e-3, 1.3*2.1e-3, 1.7*2.1e-3, 1.9*2.1e-3, 2.25*2.1e-3], [1.1*2.1e-3, 1.7*2.1e-3, 2.1*2.1e-3, 2.3*2.1e-3, 2.5*2.1e-3]]"
+            ed_off_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*2.2e-3, 0.4*2.2e-3, 0.8*2.2e-3, 0.68*2.2e-3, 0.9*2.2e-3], [0.65*2.2e-3, 0.9*2.2e-3, 1.2*2.2e-3, 1.5*2.2e-3, 1.7*2.2e-3], [0.9*2.2e-3, 1.3*2.2e-3, 1.7*2.2e-3, 1.9*2.2e-3, 2.25*2.2e-3], [1.1*2.2e-3, 1.7*2.2e-3, 2.1*2.2e-3, 2.3*2.2e-3, 2.5*2.2e-3]]"
+            temp_estimation = "False"
+            thermal_networks_type = "Foster"
+            switch_Rth = "[0.159, 0.133, 0.120, 0.038]"
+            switch_Tth = "[1.1e-1, 1.56e-2, 1.35e-3, 1.51e-4]"
+            switch_Cth = "[0.0029, 0.0097, 0.1068, 0.8500]"
+            diode_Rth = "[0.159, 0.133, 0.120, 0.038]"
+            diode_Tth = "[1.1e-1, 1.56e-2, 1.35e-3, 1.51e-4]"
+            diode_Cth = "[0.0029, 0.0097, 0.1068, 0.8500]"
+            loss_exec_rate = "100e-6"
+            show_monitoring = "False"
+        }
+
+        "core/Current Measurement" {
+            bw_limit = "False"
+            frequency = "10e3"
+            comparator_enable = "False"
+            operator = "greater"
+            threshold = "0"
+            cmp_abs_value = "False"
+            feed_forward = "false"
+            sig_output = "False"
+            sig_output_filt_and_full_bw = "False"
+            execution_rate = "100e-6"
+            addr = "0"
+            nd_msr_estimation = "false"
+            dev_cpl_msr = "false"
+            host_device = "0"
+            output_to_device = "0"
+            dev_cpl_index = "0"
+            dev_cpl_var_nb = "0"
+            visible = "True"
+            override_signal_name = "False"
+            signal_name = ""
+        }
+
+        "core/Separate or Parallel Excitation DC Machine" {
+            Ra = "2.581"
+            Rf = "281.3"
+            La = "0.028"
+            Lf = "156.0"
+            Laf = "0.9483"
+            Jm = "0.02215"
+            friction_coeff = "0"
+            unconstrained_angle = "disabled"
+            load_src = "SCADA / external"
+            ext_mdl_load_type = "torque"
+            load_ai_pin_addr = "1"
+            load_ai_offset = "0"
+            load_ai_gain = "1"
+            enc_ppr = "1024"
+            res_pole_pairs = "1"
+            res_carr_source = "internal"
+            res_int_carr_f = "5000.0"
+            res_ai_pin_addr = "1"
+            res_ai_offset = "0"
+            res_ai_gain = "1"
+            absenc_type = "None"
+            endat_clock_di_addr = "1"
+            endat_clock_di_logic = "active high"
+            endat_data_di_addr = "2"
+            endat_data_di_logic = "active high"
+            biss_clock_di_addr = "1"
+            biss_clock_di_logic = "active high"
+            biss_data_di_addr = "2"
+            ssi_clock_di_addr = "1"
+            ssi_clock_di_logic = "active high"
+            ssi_data_di_addr = "2"
+            Rsnb_rotor = "inf"
+            Rsnb_stator = "inf"
+            execution_rate = "100e-6"
+            el_trq_out = "False"
+            mech_speed_out = "False"
+            mech_angle_out = "False"
+            psi_f = "False"
+            e_a = "False"
+        }
+
+        "core/Single Phase Core Coupling" {
+            snb_type_i = "none"
+            R1 = "100000.0"
+            C1 = "1e-06"
+            C2 = "1e-06"
+            fixed_snb_i = "false"
+            snb_type_u = "none"
+            R2 = "0.1"
+            L1 = "0.1"
+            L2 = "0.1"
+            fixed_snb_u = "false"
+        }
+
+        "core/Three Phase Diode Rectifier" {
+            show_monitoring = "False"
+            losses_estimation = "False"
+            Import_diode_xml = "not selected"
+            Vd = "1.2"
+            Rd = "0"
+            i_sw = "[0.0, 6.0, 12.0, 18.0, 24.0]"
+            v_sw = "[0.0, 600.0]"
+            temp_sw = "[25.0, 50.0, 75.0, 100.0, 125.0]"
+            vd_table_out = "[1.2, 1.2, 1.2, 1.2, 1.2]"
+            ed_off_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*2.2e-3, 0.4*2.2e-3, 0.8*2.2e-3, 0.68*2.2e-3, 0.9*2.2e-3], [0.65*2.2e-3, 0.9*2.2e-3, 1.2*2.2e-3, 1.5*2.2e-3, 1.7*2.2e-3], [0.9*2.2e-3, 1.3*2.2e-3, 1.7*2.2e-3, 1.9*2.2e-3, 2.25*2.2e-3], [1.1*2.2e-3, 1.7*2.2e-3, 2.1*2.2e-3, 2.3*2.2e-3, 2.5*2.2e-3]]"
+            temp_estimation = "False"
+            thermal_networks_type = "Foster"
+            diode_Rth = "[0.159, 0.133, 0.120, 0.038]"
+            diode_Tth = "[1.1e-1, 1.56e-2, 1.35e-3, 1.51e-4]"
+            diode_Cth = "[0.0029, 0.0097, 0.1068, 0.8500]"
+            loss_exec_rate = "100e-6"
+            PESB_Optimization = "True"
+        }
+
+        "core/Three Phase Voltage Source" {
+            init_rms_value = "0.0"
+            init_frequency = "50.0"
+            init_phase = "0.0"
+        }
+
+        "core/Voltage Measurement" {
+            bw_limit = "False"
+            frequency = "10e3"
+            comparator_enable = "False"
+            operator = "greater"
+            threshold = "0"
+            cmp_abs_value = "False"
+            feed_forward = "false"
+            sig_output = "False"
+            sig_output_filt_and_full_bw = "False"
+            execution_rate = "100e-6"
+            addr = "0"
+            nd_msr_estimation = "false"
+            dev_cpl_msr = "false"
+            host_device = "0"
+            output_to_device = "0"
+            dev_cpl_index = "0"
+            dev_cpl_var_nb = "0"
+            visible = "True"
+            override_signal_name = "False"
+            signal_name = ""
+        }
+    }
+
+    CODE model_init
+        # Numpy module is imported as 'np'
+        # Scipy module is imported as 'sp'
+        
+        # Signal processing execution rate
+        Ts = 100e-6
+        
+        
+        Lgrid = 0.001
+        Rgrid = 0.01
+        
+        pms = 2
+    ENDCODE
+}
